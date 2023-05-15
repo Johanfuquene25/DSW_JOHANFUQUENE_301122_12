@@ -1,0 +1,262 @@
+
+
+const AgregaCaja = () =>{
+    const container = document.getElementById('containerflex');
+    let divNuevo =  document.createElement('div');
+    divNuevo.classList.add('cajaflex');
+    let pNuevo =  document.createElement('p');
+    pNuevo.textContent="Cajita";
+    divNuevo.appendChild(pNuevo);
+    container.appendChild(divNuevo);
+}
+
+
+const QuitarCaja = () =>{
+    const container = document.getElementById('containerflex');
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
+        break
+    }
+}
+
+const HandlerChange = (event, valor) =>{
+    const trueAction = event.checked;
+    const flexobli = document.getElementById('id_flex').checked;
+    const container = document.getElementById('containerflex');
+    const mensa = document.getElementById('mensaje');
+
+
+    if(flexobli){
+        if(valor=="id_flex"){
+            if(trueAction){
+                container.style.display="flex";
+                mensa.textContent="Por defecto al aplicar flex carga en fila las cajitas";
+            }else{
+                container.style.display="";
+                mensa.textContent="Para usar las demás propiedades es necesario FlexBox";
+            }
+        }
+        if(valor=="id_center" ){
+            if(trueAction){
+                LimpiarChecksJusti("id_center");
+                container.style.justifyContent="center";
+                mensa.textContent="Centra las cajitas";
+            }else{
+                container.style.justifyContent="";
+                mensa.textContent="Quita el centrado";
+            }
+        }
+        if(valor=="id_start" ){
+            if(trueAction){
+                LimpiarChecksJusti("id_start");
+                container.style.justifyContent="start";
+                mensa.textContent="Alinea al inicio las cajitas";
+            }else{
+                container.style.justifyContent="";
+                mensa.textContent="Quita el centrado al inicio";
+            }
+        }
+        if(valor=="id_end" ){
+            if(trueAction){
+                LimpiarChecksJusti("id_end");
+                container.style.justifyContent="end";
+                mensa.textContent="Alinea al final las cajitas";
+            }else{
+                container.style.justifyContent="";
+                mensa.textContent="Quita el centrado al final";
+            }
+        }
+
+
+        if(valor=="id_center_a"){
+            if(trueAction){
+                LimpiarChecksAling("id_center_a");
+                container.style.alignItems="center";
+                mensa.textContent="Centra las cajitas vvv";
+            }else{
+                container.style.alignItems="";
+                mensa.textContent="Quita el centrado";
+            }
+        }
+        if(valor=="id_start_a" ){
+            if(trueAction){
+                LimpiarChecksAling("id_start_a");
+                container.style.alignItems="start";
+                mensa.textContent="Alinea al inicio las cajitas";
+            }else{
+                container.style.alignItems="";
+                mensa.textContent="Quita el centrado al inicio";
+            }
+        }
+
+        if(valor=="id_end_a" ){
+            if(trueAction){
+                LimpiarChecksAling("id_end_a");
+                container.style.alignItems="end";
+                mensa.textContent="Alinea al final las cajitas";
+            }else{
+                container.style.alignItems="";
+                mensa.textContent="Quita el centrado al final";
+            }
+        }
+
+
+        if(valor=="id_wrap"){
+            if(trueAction){
+                let valoContra = document.getElementById('id_nowrap');
+                valoContra.checked = false;
+                container.style.flexWrap="wrap";
+                mensa.textContent="Organiza las cajitas sin desbordamiento, puede ver la propiedad con muchas cajas";
+            }else{
+                container.style.alignItems="";
+                mensa.textContent="No organiza las cajitas";
+            }
+        }
+        if(valor=="id_nowrap" ){
+            if(trueAction){
+                let valoContra = document.getElementById('id_wrap');
+                valoContra.checked = false;
+                container.style.flexWrap="nowrap";
+                mensa.textContent="Permite el desbordamiento de las cajitas, puede ver la propiedad con muchas cajas";
+            }else{
+                container.style.alignItems="";
+                mensa.textContent="Permite el desbordamiento";
+            }
+        }
+
+
+    
+    }else{
+        mensa.textContent="Para usar las demás propiedades es necesario FlexBox";
+        container.style.display="";
+        trueAction =false;
+    }
+
+
+}
+
+const LimpiarChecksAling = (valor) =>{
+    let centrar = document.getElementById('id_center_a');
+    let start = document.getElementById('id_start_a');
+    let endd = document.getElementById('id_end');
+
+    if(valor=="id_center_a"){
+        endd.checked = false;
+        start.checked = false;
+    }
+
+    if(valor=="id_start_a"){
+        endd.checked = false;
+    centrar.checked = false;
+    }
+
+    if(valor=="id_end_a"){
+        centrar.checked = false;
+    start.checked = false;
+    }
+}
+
+
+const LimpiarChecksJusti = (valor)=>{
+    let centrar = document.getElementById('id_center');
+    let start = document.getElementById('id_start');
+    let endd = document.getElementById('id_end');
+
+    if(valor=="id_center"){
+        endd.checked = false;
+        start.checked = false;
+    }
+
+    if(valor=="id_start"){
+        endd.checked = false;
+    centrar.checked = false;
+    }
+
+    if(valor=="id_end"){
+        centrar.checked = false;
+    start.checked = false;
+    }
+
+    
+    
+}
+
+const ChangeSection = (event, valor) =>{
+
+    const inicioContainer = document.getElementById('inicio');
+    inicioContainer.classList.remove('container');
+    inicioContainer.classList.remove('noShow');
+        const temaContainer = document.getElementById('tema');
+        temaContainer.classList.remove('container');
+        temaContainer.classList.remove('noShow');
+            const mockuoContainer = document.getElementById('mockup');
+            mockuoContainer.classList.remove('container');
+            mockuoContainer.classList.remove('noShow');
+                const acercaContainer = document.getElementById('about');
+                acercaContainer.classList.remove('container');
+                acercaContainer.classList.remove('noShow');
+if(valor=="inicio"){
+    if(inicioContainer.classList!="container"){
+        inicioContainer.classList.add('container');
+        temaContainer.classList.add('noShow');
+        mockuoContainer.classList.add('noShow');
+        acercaContainer.classList.add('noShow');
+    }
+}
+
+if(valor=="tema"){
+    if(temaContainer.classList!="container"){
+    temaContainer.classList.add('container');
+    inicioContainer.classList.add('noShow');
+        mockuoContainer.classList.add('noShow');
+        acercaContainer.classList.add('noShow');
+    }
+}
+
+if(valor=="mockup"){
+    if(mockuoContainer.classList!="container"){
+    mockuoContainer.classList.add('container');
+    inicioContainer.classList.add('noShow');
+    temaContainer.classList.add('noShow');
+    acercaContainer.classList.add('noShow');
+    }
+}
+
+if(valor=="about"){
+    if(acercaContainer.classList!="container"){
+    acercaContainer.classList.add('container');
+    inicioContainer.classList.add('noShow');
+    temaContainer.classList.add('noShow');
+    mockuoContainer.classList.add('noShow');
+    }
+}
+
+
+}
+
+const OPCIONESPREGUNTAS =()=>{
+let puntos = 0;
+let Data = document.forms["form"];
+let respuestas = ["a","b","c", "b","a"];
+
+
+for (let index = 1; index <= respuestas.length; index++) {
+    // console.dir(Data["r"+index].value +" "+ respuestas.length);
+    if(Data["r"+index].value == null || Data["r"+index].value == ""){
+                alert("Por favor responder todas las preguntas");
+                return false;
+            }else{
+                // console.log(Data["r"+index].value+" "+respuestas[index-1]+""+puntos);
+                    if(Data["r" + index].value == respuestas[index-1]){
+                        puntos++;
+                    }
+                }
+            }
+            let resMensaje = document.getElementById('rest');
+            if(puntos==respuestas.length){
+                resMensaje.innerHTML= "¡Puntaje perfecto! "+puntos+ " de "+puntos+" posibles. ";
+            }else {
+                resMensaje.innerHTML= "Acertaste "+puntos+ " de "+respuestas.length+ " posibles. ";
+            }
+
+}
